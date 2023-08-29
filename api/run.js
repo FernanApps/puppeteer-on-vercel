@@ -18,7 +18,10 @@ export default async function handler(request, response) {
     ignoreHTTPSErrors: true,
   })
   const page = await browser.newPage()
-  await page.goto("https://vercel.com/")
+  await page.goto("https://www.craiyon.com")
+  await page.waitForTimeout(10000);
+  const cookies = await page.cookies();
+  
   const title = await page.title()
 
   await page.close()
@@ -26,9 +29,6 @@ export default async function handler(request, response) {
   await browser.close()
 
   response.status(200).json({
-    body: request.body,
-    cookies: request.cookies,
-    title,
-    chromium: await chromium.executablePath,
+    cookies
   })
 }
