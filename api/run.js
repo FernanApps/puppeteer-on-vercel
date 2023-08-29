@@ -19,7 +19,7 @@ export default async function handler(request, response) {
   })
   const page = await browser.newPage()
   await page.goto("https://www.craiyon.com")
-  await page.waitForTimeout(10000);
+  await page.waitForTimeout(5000);
   const cookies = await page.cookies();
   
   const title = await page.title()
